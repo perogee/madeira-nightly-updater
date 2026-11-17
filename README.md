@@ -1,7 +1,6 @@
 # Madeira AltStore / SideStore source
 
-Auto-updating source for [camhoc/Madeira](https://github.com/camhoc/Madeira) builds,
-served with GitHub Pages. Checks source every hour.
+Auto-updating source for [camhoc/Madeira](https://github.com/camhoc/Madeira) builds. Checks source every hour.
 
 # How to use:
 
