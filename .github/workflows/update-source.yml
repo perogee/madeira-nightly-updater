@@ -2,10 +2,10 @@ name: Update source
 
 on:
   schedule:
-    - cron: "17 */3 * * *"   # every 3 hours
-  workflow_dispatch:          # "Run workflow" button for manual updates
+    - cron: "17 * * * *"   # every hour
+  workflow_dispatch:          
   push:
-    branches: [main]          # redeploy when you edit files yourself
+    branches: [main]          
 
 permissions:
   contents: write
