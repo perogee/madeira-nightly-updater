@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Madeira Source</title>
+<style>
+  :root { color-scheme: light dark; --accent: #2E7D5B; }
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 32px 20px; line-height: 1.5; }
+  header { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+  header img { width: 64px; height: 64px; border-radius: 14px; }
+  h1 { font-size: 1.4rem; margin: 0; }
+  .sub { opacity: .7; margin: 0; font-size: .95rem; }
+  .card { border: 1px solid #8884; border-radius: 12px; padding: 14px 16px; margin: 16px 0; }
+  .btn { display: block; text-align: center; padding: 12px; border-radius: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; margin: 10px 0; }
+  .btn.alt { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  code { display: block; word-break: break-all; font-size: .85rem; padding: 10px; border-radius: 8px; background: #8882; margin-top: 6px; }
+  .muted { opacity: .65; font-size: .85rem; }
+</style>
+</head>
+<body>
+<header>
+  <img id="icon" alt="">
+  <div>
+    <h1 id="name">Madeira Source</h1>
+    <p class="sub" id="ver">Loading…</p>
+  </div>
+</header>
+
+<a class="btn" id="altstore">Add to AltStore</a>
+<a class="btn alt" id="sidestore">Add to SideStore</a>
+
+<div class="card">
+  <strong>Source URL</strong>
+  <code id="url"></code>
+</div>
+
+<div class="card" id="notes" hidden>
+  <strong>Latest build</strong>
+  <p id="notes-text" style="white-space:pre-wrap;margin:6px 0 0"></p>
+</div>
+
+<p class="muted">Auto-updated from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> releases.</p>
+
+<script>
+  const src = new URL("source.json", location.href).href;
+  document.getElementById("url").textContent = src;
+  document.getElementById("altstore").href = "altstore://source?url=" + encodeURIComponent(src);
+  document.getElementById("sidestore").href = "sidestore://source?url=" + encodeURIComponent(src);
+  fetch(src, { cache: "no-store" }).then(r => r.json()).then(s => {
+    const app = s.apps[0], v = (app.versions || [])[0];
+    document.getElementById("icon").src = app.iconURL;
+    document.getElementById("name").textContent = app.name;
+    document.getElementById("ver").textContent = v
+      ? `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`
+      : "No builds yet";
+    if (v && v.localizedDescription) {
+      document.getElementById("notes").hidden = false;
+      document.getElementById("notes-text").textContent = v.localizedDescription;
+    }
+  }).catch(() => { document.getElementById("ver").textContent = "Couldn't load source.json"; });
+</script>
+</body>
+</html>
