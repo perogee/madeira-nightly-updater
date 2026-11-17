@@ -33,16 +33,15 @@
   summary::-webkit-details-marker { display: none; }
   summary .chev { transition: transform .2s; }
   details[open] summary .chev { transform: rotate(180deg); }
+  details[open] + .btn { margin-top: 22px; }
 
-  .menu { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-          overflow: hidden; margin-top: 6px; }
+  .menu { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
   .item { display: flex; align-items: center; justify-content: space-between; width: 100%;
-          padding: 13px 16px; background: none; border: 0; border-top: 1px solid var(--line);
+          padding: 13px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
           color: var(--text); font: inherit; text-decoration: none; text-align: left; cursor: pointer; }
-  .item:first-child { border-top: 0; }
   .item:active { background: var(--line); }
   .item .hint { color: var(--muted); font-size: .85rem; }
-  .item.copy { font-weight: 600; color: var(--accent); }
+  .item.copy { font-weight: 600; color: var(--accent); border-color: var(--accent); margin-bottom: 14px; }
 
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
           padding: 14px 16px; margin: 18px 0; }
