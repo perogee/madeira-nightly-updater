@@ -5,56 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Madeira Source</title>
 <style>
-  :root { color-scheme: light dark; --accent: #2E7D5B; }
-  body { font-family: -apple-system, system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 32px 20px; line-height: 1.5; }
-  header { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
-  header img { width: 64px; height: 64px; border-radius: 14px; }
-  h1 { font-size: 1.4rem; margin: 0; }
-  .sub { opacity: .7; margin: 0; font-size: .95rem; }
-  .card { border: 1px solid #8884; border-radius: 12px; padding: 14px 16px; margin: 16px 0; }
-  .btn { display: block; text-align: center; padding: 12px; border-radius: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; margin: 10px 0; }
-  .btn.alt { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
-  code { display: block; word-break: break-all; font-size: .85rem; padding: 10px; border-radius: 8px; background: #8882; margin-top: 6px; }
-  .muted { opacity: .65; font-size: .85rem; }
+  :root {
+    color-scheme: light dark;
+    --accent: #2E7D5B;
+    --bg: #f6f7f6; --card: #fff; --text: #141614; --muted: #6b716c; --line: #e3e6e3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e100f; --card: #181b19; --text: #eef1ee; --muted: #9aa29c; --line: #2a2f2c; }
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text);
+         max-width: 480px; margin: 0 auto; padding: 28px 18px 40px; line-height: 1.45; }
+  header { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
+  header img { width: 68px; height: 68px; border-radius: 16px; background: var(--line); }
+  h1 { font-size: 1.35rem; margin: 0; }
+  .sub { color: var(--muted); margin: 2px 0 0; font-size: .9rem; }
+
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+         padding: 14px; border-radius: 12px; border: 0; font: inherit; font-weight: 600;
+         text-decoration: none; cursor: pointer; margin: 10px 0; }
+  .primary { background: var(--accent); color: #fff; }
+  .secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .secondary[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+  details { margin: 10px 0; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary .chev { transition: transform .2s; }
+  details[open] summary .chev { transform: rotate(180deg); }
+
+  .menu { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+          overflow: hidden; margin-top: 6px; }
+  .item { display: flex; align-items: center; justify-content: space-between; width: 100%;
+          padding: 13px 16px; background: none; border: 0; border-top: 1px solid var(--line);
+          color: var(--text); font: inherit; text-decoration: none; text-align: left; cursor: pointer; }
+  .item:first-child { border-top: 0; }
+  .item:active { background: var(--line); }
+  .item .hint { color: var(--muted); font-size: .85rem; }
+  .item.copy { font-weight: 600; color: var(--accent); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+          padding: 14px 16px; margin: 18px 0; }
+  .card h2 { font-size: .95rem; margin: 0 0 6px; }
+  #notes-text { white-space: pre-wrap; margin: 0; font-size: .9rem; color: var(--muted); }
+  footer { color: var(--muted); font-size: .8rem; text-align: center; margin-top: 24px; }
+  footer a { color: inherit; }
 </style>
 </head>
 <body>
 <header>
   <img id="icon" alt="">
   <div>
-    <h1 id="name">Madeira Source</h1>
+    <h1 id="name">Madeira</h1>
     <p class="sub" id="ver">Loading…</p>
   </div>
 </header>
 
-<a class="btn" id="altstore">Add to AltStore</a>
-<a class="btn alt" id="sidestore">Add to SideStore</a>
+<details id="add">
+  <summary class="btn primary">Add Source <span class="chev">▾</span></summary>
+  <div class="menu" id="menu">
+    <button class="item copy" id="copy" type="button">
+      <span id="copy-label">Copy source URL</span><span class="hint">Clipboard</span>
+    </button>
+  </div>
+</details>
 
-<div class="card">
-  <strong>Source URL</strong>
-  <code id="url"></code>
-</div>
+<a class="btn secondary" id="download" aria-disabled="true">Download latest IPA</a>
 
 <div class="card" id="notes" hidden>
-  <strong>Latest build</strong>
-  <p id="notes-text" style="white-space:pre-wrap;margin:6px 0 0"></p>
+  <h2>Latest build</h2>
+  <p id="notes-text"></p>
 </div>
 
-<p class="muted">Auto-updated from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> releases.</p>
+<footer>
+  Auto-updated from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> releases
+</footer>
 
 <script>
-  const src = new URL("source.json", location.href).href;
-  document.getElementById("url").textContent = src;
-  document.getElementById("altstore").href = "altstore://source?url=" + encodeURIComponent(src);
-  document.getElementById("sidestore").href = "sidestore://source?url=" + encodeURIComponent(src);
-  fetch(src, { cache: "no-store" }).then(r => r.json()).then(s => {
+  const SRC = new URL("source.json", location.href).href;
+
+  // Sideloader URL schemes (same set altdirect supports).
+  const LOADERS = [
+    { name: "AltStore",      href: s => "altstore://source?url=" + s },
+    { name: "SideStore",     href: s => "sidestore://source?url=" + s },
+    { name: "LiveContainer", href: s => "livecontainer://source?url=" + s },
+    { name: "Feather",       href: s => "feather://source/" + s },
+    { name: "StikStore",     href: s => "stikstore://add-source?url=" + encodeURIComponent(s) },
+    { name: "TrollApps",     href: s => "trollapps://add?url=" + s },
+  ];
+
+  const menu = document.getElementById("menu");
+  for (const l of LOADERS) {
+    const a = document.createElement("a");
+    a.className = "item";
+    a.href = l.href(SRC);
+    a.innerHTML = `<span></span><span class="hint">Open ›</span>`;
+    a.firstChild.textContent = l.name;
+    menu.appendChild(a);
+  }
+
+  // Copy source URL
+  const copyLabel = document.getElementById("copy-label");
+  async function copyText(t) {
+    try { await navigator.clipboard.writeText(t); return true; }
+    catch {
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, t.length);
+      let ok = false; try { ok = document.execCommand("copy"); } catch {}
+      ta.remove(); return ok;
+    }
+  }
+  document.getElementById("copy").addEventListener("click", async () => {
+    const ok = await copyText(SRC);
+    copyLabel.textContent = ok ? "Copied!" : SRC;
+    if (ok) setTimeout(() => (copyLabel.textContent = "Copy source URL"), 1800);
+  });
+
+  // Fill in app info + latest IPA link
+  fetch(SRC, { cache: "no-store" }).then(r => r.json()).then(s => {
     const app = s.apps[0], v = (app.versions || [])[0];
     document.getElementById("icon").src = app.iconURL;
     document.getElementById("name").textContent = app.name;
-    document.getElementById("ver").textContent = v
-      ? `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`
-      : "No builds yet";
-    if (v && v.localizedDescription) {
+    document.title = app.name + " Source";
+    if (!v) { document.getElementById("ver").textContent = "No builds yet"; return; }
+    document.getElementById("ver").textContent =
+      `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`;
+    const dl = document.getElementById("download");
+    dl.href = v.downloadURL;
+    dl.removeAttribute("aria-disabled");
+    const mb = v.size ? ` (${Math.round(v.size / 1048576)} MB)` : "";
+    dl.textContent = "Download latest IPA" + mb;
+    if (v.localizedDescription) {
       document.getElementById("notes").hidden = false;
       document.getElementById("notes-text").textContent = v.localizedDescription;
     }
