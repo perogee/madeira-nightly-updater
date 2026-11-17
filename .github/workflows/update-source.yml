@@ -1,1 +1,68 @@
-test
+name: Update source
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours
+  workflow_dispatch:          # "Run workflow" button for manual updates
+  push:
+    branches: [main]          # redeploy when you edit files yourself
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-source
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check upstream releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPSTREAM_REPO: camhoc/Madeira
+        run: python3 scripts/update_source.py
+
+      - name: Commit changes
+        id: commit
+        run: |
+          if git diff --quiet -- source.json; then
+            echo "Nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source.json
+          git commit -m "Update source from camhoc/Madeira releases"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare site
+        if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        run: |
+          mkdir -p _site
+          cp source.json index.html _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        with:
+          path: _site
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true' || github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
