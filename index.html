@@ -17,7 +17,7 @@
   body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text);
          max-width: 480px; margin: 0 auto; padding: 28px 18px 40px; line-height: 1.45; }
   header { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
-  header img { width: 68px; height: 68px; border-radius: 16px; background: var(--line); }
+  header img, header .icon { width: 68px; height: 68px; border-radius: 16px; background: var(--line); }
   h1 { font-size: 1.35rem; margin: 0; }
   .sub { color: var(--muted); margin: 2px 0 0; font-size: .9rem; }
 
@@ -46,42 +46,59 @@
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
           padding: 14px 16px; margin: 18px 0; }
   .card h2 { font-size: .95rem; margin: 0 0 6px; }
-  #notes-text { white-space: pre-wrap; margin: 0; font-size: .9rem; color: var(--muted); }
+  section + section { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+         text-transform: uppercase; padding: 3px 8px; border-radius: 6px; margin-bottom: 4px;
+         background: var(--line); color: var(--muted); }
+  .tag.nightly { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent); }
+  .notes-text { white-space: pre-wrap; margin: 0; font-size: .9rem; color: var(--muted); }
   footer { color: var(--muted); font-size: .8rem; text-align: center; margin-top: 24px; }
   footer a { color: inherit; }
 </style>
 </head>
 <body>
-<header>
-  <img id="icon" alt="">
-  <div>
-    <h1 id="name">Madeira</h1>
-    <p class="sub" id="ver">Loading…</p>
-  </div>
-</header>
-
-<details id="add">
-  <summary class="btn primary">Add Source <span class="chev">▾</span></summary>
-  <div class="menu" id="menu">
-    <button class="item copy" id="copy" type="button">
-      <span id="copy-label">Copy source URL</span><span class="hint">Clipboard</span>
-    </button>
-  </div>
-</details>
-
-<a class="btn secondary" id="download" aria-disabled="true">Download latest IPA</a>
-
-<div class="card" id="notes" hidden>
-  <h2>Latest build</h2>
-  <p id="notes-text"></p>
-</div>
+<main id="channels"></main>
 
 <footer>
-  Auto-updated from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> releases
+  Nightly from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> ·
+  Stable from <a href="https://github.com/willfaust/Madeira">willfaust/Madeira</a><br>
+  Both use the same bundle ID: installing one replaces the other.
 </footer>
 
+<template id="channel-tpl">
+  <section>
+    <header>
+      <img class="icon" alt="">
+      <div>
+        <span class="tag"></span>
+        <h1 class="name">Madeira</h1>
+        <p class="sub ver">Loading…</p>
+      </div>
+    </header>
+
+    <details>
+      <summary class="btn primary">Add Source <span class="chev">▾</span></summary>
+      <div class="menu">
+        <button class="item copy" type="button">
+          <span class="copy-label">Copy source URL</span><span class="hint">Clipboard</span>
+        </button>
+      </div>
+    </details>
+
+    <a class="btn secondary download" aria-disabled="true">Download latest IPA</a>
+
+    <div class="card notes" hidden>
+      <h2>Latest build</h2>
+      <p class="notes-text"></p>
+    </div>
+  </section>
+</template>
+
 <script>
-  const SRC = new URL("source.json", location.href).href;
+  const CHANNELS = [
+    { file: "source.json", label: "Nightly", cls: "nightly" },
+    { file: "stable.json", label: "Stable",  cls: "stable" },
+  ];
 
   // Sideloader URL schemes (same set altdirect supports).
   const LOADERS = [
@@ -93,18 +110,6 @@
     { name: "TrollApps",     href: s => "trollapps://add?url=" + s },
   ];
 
-  const menu = document.getElementById("menu");
-  for (const l of LOADERS) {
-    const a = document.createElement("a");
-    a.className = "item";
-    a.href = l.href(SRC);
-    a.innerHTML = `<span></span><span class="hint">Open ›</span>`;
-    a.firstChild.textContent = l.name;
-    menu.appendChild(a);
-  }
-
-  // Copy source URL
-  const copyLabel = document.getElementById("copy-label");
   async function copyText(t) {
     try { await navigator.clipboard.writeText(t); return true; }
     catch {
@@ -115,31 +120,53 @@
       ta.remove(); return ok;
     }
   }
-  document.getElementById("copy").addEventListener("click", async () => {
-    const ok = await copyText(SRC);
-    copyLabel.textContent = ok ? "Copied!" : SRC;
-    if (ok) setTimeout(() => (copyLabel.textContent = "Copy source URL"), 1800);
-  });
 
-  // Fill in app info + latest IPA link
-  fetch(SRC, { cache: "no-store" }).then(r => r.json()).then(s => {
-    const app = s.apps[0], v = (app.versions || [])[0];
-    document.getElementById("icon").src = app.iconURL;
-    document.getElementById("name").textContent = app.name;
-    document.title = app.name + " Source";
-    if (!v) { document.getElementById("ver").textContent = "No builds yet"; return; }
-    document.getElementById("ver").textContent =
-      `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`;
-    const dl = document.getElementById("download");
-    dl.href = v.downloadURL;
-    dl.removeAttribute("aria-disabled");
-    const mb = v.size ? ` (${Math.round(v.size / 1048576)} MB)` : "";
-    dl.textContent = "Download latest IPA" + mb;
-    if (v.localizedDescription) {
-      document.getElementById("notes").hidden = false;
-      document.getElementById("notes-text").textContent = v.localizedDescription;
+  const tpl = document.getElementById("channel-tpl");
+  const root = document.getElementById("channels");
+
+  for (const ch of CHANNELS) {
+    const src = new URL(ch.file, location.href).href;
+    const el = tpl.content.firstElementChild.cloneNode(true);
+    const $ = sel => el.querySelector(sel);
+    root.appendChild(el);
+
+    $(".tag").textContent = ch.label;
+    $(".tag").classList.add(ch.cls);
+
+    const menu = $(".menu");
+    for (const l of LOADERS) {
+      const a = document.createElement("a");
+      a.className = "item";
+      a.href = l.href(src);
+      a.innerHTML = `<span></span><span class="hint">Open ›</span>`;
+      a.firstChild.textContent = l.name;
+      menu.appendChild(a);
     }
-  }).catch(() => { document.getElementById("ver").textContent = "Couldn't load source.json"; });
+
+    const label = $(".copy-label");
+    $(".copy").addEventListener("click", async () => {
+      const ok = await copyText(src);
+      label.textContent = ok ? "Copied!" : src;
+      if (ok) setTimeout(() => (label.textContent = "Copy source URL"), 1800);
+    });
+
+    fetch(src, { cache: "no-store" }).then(r => r.json()).then(s => {
+      const app = s.apps[0], v = (app.versions || [])[0];
+      $(".icon").src = app.iconURL;
+      $(".name").textContent = app.name;
+      if (!v) { $(".ver").textContent = "No builds yet"; return; }
+      $(".ver").textContent =
+        `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`;
+      const dl = $(".download");
+      dl.href = v.downloadURL;
+      dl.removeAttribute("aria-disabled");
+      dl.textContent = "Download latest IPA" + (v.size ? ` (${Math.round(v.size / 1048576)} MB)` : "");
+      if (v.localizedDescription) {
+        $(".notes").hidden = false;
+        $(".notes-text").textContent = v.localizedDescription;
+      }
+    }).catch(() => { $(".ver").textContent = "Couldn't load " + ch.file; });
+  }
 </script>
 </body>
 </html>
