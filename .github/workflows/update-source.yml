@@ -3,9 +3,9 @@ name: Update source
 on:
   schedule:
     - cron: "17 * * * *"   # every hour
-  workflow_dispatch:          
+  workflow_dispatch:          # "Run workflow" button for manual updates
   push:
-    branches: [main]          
+    branches: [main]          # redeploy when you edit files yourself
 
 permissions:
   contents: write
@@ -27,21 +27,20 @@ jobs:
       - name: Check upstream releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          UPSTREAM_REPO: camhoc/Madeira
         run: python3 scripts/update_source.py
 
       - name: Commit changes
         id: commit
         run: |
-          if git diff --quiet -- source.json; then
+          if git diff --quiet -- source.json stable.json; then
             echo "Nothing to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source.json
-          git commit -m "Update source from camhoc/Madeira releases"
+          git add source.json stable.json
+          git commit -m "Update sources from upstream releases"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
@@ -49,7 +48,7 @@ jobs:
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
         run: |
           mkdir -p _site
-          cp source.json index.html _site/
+          cp source.json stable.json index.html _site/
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
