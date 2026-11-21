@@ -1,0 +1,29 @@
+{
+  "name": "Madeira (Stable)",
+  "identifier": "io.github.madeira.stable.source",
+  "subtitle": "Windows PC games on iPhone",
+  "description": "AltStore/SideStore source for official Madeira releases by willfaust — FEX-Emu + Wine + DXMT running Windows games on iOS, no jailbreak.",
+  "iconURL": "https://raw.githubusercontent.com/willfaust/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+  "headerURL": "https://raw.githubusercontent.com/willfaust/Madeira/main/docs/assets/banner.png",
+  "website": "https://github.com/willfaust/Madeira",
+  "tintColor": "#2E7D5B",
+  "apps": [
+    {
+      "name": "Madeira",
+      "bundleIdentifier": "com.willfaust.madeora",
+      "developerName": "willfaust",
+      "subtitle": "Bringing PC gaming to your iPhone.",
+      "localizedDescription": "Madeira runs unmodified Windows PC games on an iPhone inside a single iOS app.\n\n• FEX-Emu translates x86/x86-64 to ARM64\n• Wine 11.4 (ARM64EC, WoW64 for 32-bit games)\n• DXMT for Direct3D 9/10/11 on Metal\n• madeira-d3d12 for Direct3D 12 on Metal\n\nFeatures: game library, Steam sign-in and installs via Madeira Dock, Steam Cloud saves, Bluetooth controllers and touch controls, keyboard/mouse passthrough, Japanese locale per game.\n\nRequires JIT (StikDebug or the built-in StikJIT helper). iOS 26+ recommended. Active research project — expect rough edges.",
+      "iconURL": "https://raw.githubusercontent.com/willfaust/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "tintColor": "#2E7D5B",
+      "category": "games",
+      "screenshots": [],
+      "versions": [],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    }
+  ],
+  "news": []
+}
