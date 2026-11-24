@@ -21,6 +21,16 @@
       "versions": [
         {
           "version": "0.2.0",
+          "buildVersion": "173",
+          "marketingVersion": "Madeira Nightly 0.2.95 (original bundle ID)",
+          "date": "2026-11-23T22:28:39Z",
+          "localizedDescription": "**Support me:** [Buy Me a Coffee](https://buymeacoffee.com/camhawk)\n\n**Install with FlekStore:** https://flekstore.com/madeira\n\n---\n\n**Madeira Nightly 0.2.95 (original bundle ID, build 173)**\n\nA nightly build for testers. It uses the original bundle ID `com.willfaust.madeora`. The complete source of this exact build is attached (`Madeira Nightly 0.2.95 og source.zip`): the Madeira tree as it was built, with the wine, FEX, DXMT and Dock folders and Madeira's own FEX and Dock patches already applied.\n\nThis build contains code ported from MetalSharp (AGPL-3.0), written by BOR1NG (Avery Felts, https://github.com/aaf2tbz): the Overwatch 2 fixes, section views, debug registers, XSAVE state revert and the opt-in Intel flag behaviour. It also contains code from MetalSharp-Wine (LGPL-2.1) and MetalSharp's FEX patches (MIT), and from Mullion (LGPL-2.1-or-later, https://github.com/dttdrv/mullion). Thank you. Details are in THIRD-PARTY-NOTICES.md and SOURCE-INFO.txt. Madeira's own code stays GPL-3.0-or-later.\n\nNot included in the source: private keys and tokens, and the build machine's scripts.\n\n---\n\n**Support me:** [Buy Me a Coffee](https://buymeacoffee.com/camhawk)",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
+          "size": 231642820,
+          "minOSVersion": "18.0"
+        },
+        {
+          "version": "0.2.0",
           "buildVersion": "150",
           "marketingVersion": "Madeira Nightly 0.2.72 (original bundle ID)",
           "date": "2026-11-21T22:15:35Z",
