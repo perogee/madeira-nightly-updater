@@ -27,19 +27,21 @@ jobs:
       - name: Check upstream releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONDONTWRITEBYTECODE: "1"
+          PAGES_BASE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: python3 scripts/update_source.py
 
       - name: Commit changes
         id: commit
         run: |
-          if git diff --quiet -- source.json stable.json; then
+          git add -A
+          if git diff --cached --quiet; then
             echo "Nothing to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source.json stable.json
           git commit -m "Update sources from upstream releases"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -49,6 +51,8 @@ jobs:
         run: |
           mkdir -p _site
           cp source.json stable.json index.html _site/
+          if [ -f misc.json ]; then cp misc.json _site/; fi
+          if [ -d icons ]; then cp -r icons _site/; fi
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
