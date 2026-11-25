@@ -52,6 +52,20 @@
          background: var(--line); color: var(--muted); }
   .tag.nightly { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent); }
   .notes-text { white-space: pre-wrap; margin: 0; font-size: .9rem; color: var(--muted); }
+  .tag.misc { background: color-mix(in srgb, #5B6CFF 22%, transparent); color: #7C8AFF; }
+  .misc-icon { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; width: 68px; height: 68px;
+               padding: 6px; border-radius: 16px; background: var(--line); flex: none; }
+  .misc-icon img { width: 100%; height: 100%; border-radius: 6px; object-fit: cover; }
+  .apps { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .app { display: flex; align-items: center; gap: 12px; background: var(--card);
+         border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+  .app img { width: 48px; height: 48px; border-radius: 11px; flex: none; background: var(--line); }
+  .app .meta { flex: 1; min-width: 0; }
+  .app .meta strong { display: block; }
+  .app .meta span { display: block; color: var(--muted); font-size: .8rem;
+                    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app .get { flex: none; padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: .85rem;
+              text-decoration: none; color: var(--accent); border: 1.5px solid var(--accent); }
   footer { color: var(--muted); font-size: .8rem; text-align: center; margin-top: 24px; }
   footer a { color: inherit; }
 </style>
@@ -62,7 +76,11 @@
 <footer>
   Nightly from <a href="https://github.com/camhoc/Madeira">camhoc/Madeira</a> ·
   Stable from <a href="https://github.com/willfaust/Madeira">willfaust/Madeira</a><br>
-  Both use the same bundle ID: installing one replaces the other.
+  Both use the same bundle ID: installing one replaces the other.<br><br>
+  Misc. from <a href="https://starforgejo.dev/projects/MeloNX">MeloNX</a> ·
+  <a href="https://github.com/Manic-EMU/ManicEMU">Manic EMU</a> ·
+  <a href="https://github.com/OatmealDome/dolphin-ios">DolphiniOS</a> ·
+  <a href="https://github.com/ARMSX2/ARMSX2">ARMSX2</a>
 </footer>
 
 <template id="channel-tpl">
@@ -91,6 +109,30 @@
       <h2>Latest build</h2>
       <p class="notes-text"></p>
     </div>
+  </section>
+</template>
+
+<template id="misc-tpl">
+  <section>
+    <header>
+      <div class="misc-icon"></div>
+      <div>
+        <span class="tag misc">Misc.</span>
+        <h1 class="name">Misc. Sources</h1>
+        <p class="sub ver">Loading…</p>
+      </div>
+    </header>
+
+    <details>
+      <summary class="btn primary">Add Source <span class="chev">▾</span></summary>
+      <div class="menu">
+        <button class="item copy" type="button">
+          <span class="copy-label">Copy source URL</span><span class="hint">Clipboard</span>
+        </button>
+      </div>
+    </details>
+
+    <div class="apps"></div>
   </section>
 </template>
 
@@ -123,6 +165,26 @@
 
   const tpl = document.getElementById("channel-tpl");
   const root = document.getElementById("channels");
+  const mb = n => Math.round(n / 1048576) + " MB";
+  const fmtVer = v => `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`;
+
+  function wireMenu(el, src) {
+    const menu = el.querySelector(".menu");
+    for (const l of LOADERS) {
+      const a = document.createElement("a");
+      a.className = "item";
+      a.href = l.href(src);
+      a.innerHTML = `<span></span><span class="hint">Open ›</span>`;
+      a.firstChild.textContent = l.name;
+      menu.appendChild(a);
+    }
+    const label = el.querySelector(".copy-label");
+    el.querySelector(".copy").addEventListener("click", async () => {
+      const ok = await copyText(src);
+      label.textContent = ok ? "Copied!" : src;
+      if (ok) setTimeout(() => (label.textContent = "Copy source URL"), 1800);
+    });
+  }
 
   for (const ch of CHANNELS) {
     const src = new URL(ch.file, location.href).href;
@@ -133,39 +195,61 @@
     $(".tag").textContent = ch.label;
     $(".tag").classList.add(ch.cls);
 
-    const menu = $(".menu");
-    for (const l of LOADERS) {
-      const a = document.createElement("a");
-      a.className = "item";
-      a.href = l.href(src);
-      a.innerHTML = `<span></span><span class="hint">Open ›</span>`;
-      a.firstChild.textContent = l.name;
-      menu.appendChild(a);
-    }
-
-    const label = $(".copy-label");
-    $(".copy").addEventListener("click", async () => {
-      const ok = await copyText(src);
-      label.textContent = ok ? "Copied!" : src;
-      if (ok) setTimeout(() => (label.textContent = "Copy source URL"), 1800);
-    });
+    wireMenu(el, src);
 
     fetch(src, { cache: "no-store" }).then(r => r.json()).then(s => {
       const app = s.apps[0], v = (app.versions || [])[0];
       $(".icon").src = app.iconURL;
       $(".name").textContent = app.name;
       if (!v) { $(".ver").textContent = "No builds yet"; return; }
-      $(".ver").textContent =
-        `${v.marketingVersion || v.version} · build ${v.buildVersion} · ${new Date(v.date).toLocaleDateString()}`;
+      $(".ver").textContent = fmtVer(v);
       const dl = $(".download");
       dl.href = v.downloadURL;
       dl.removeAttribute("aria-disabled");
-      dl.textContent = "Download latest IPA" + (v.size ? ` (${Math.round(v.size / 1048576)} MB)` : "");
+      dl.textContent = "Download latest IPA" + (v.size ? ` (${mb(v.size)})` : "");
       if (v.localizedDescription) {
         $(".notes").hidden = false;
         $(".notes-text").textContent = v.localizedDescription;
       }
     }).catch(() => { $(".ver").textContent = "Couldn't load " + ch.file; });
+  }
+
+  // Misc. source: one menu for the whole source, one row per app.
+  {
+    const src = new URL("misc.json", location.href).href;
+    const el = document.getElementById("misc-tpl").content.firstElementChild.cloneNode(true);
+    const $ = sel => el.querySelector(sel);
+    root.appendChild(el);
+    wireMenu(el, src);
+
+    fetch(src, { cache: "no-store" }).then(r => r.json()).then(s => {
+      const apps = s.apps || [];
+      $(".ver").textContent = apps.length + (apps.length === 1 ? " app" : " apps");
+      for (const app of apps.slice(0, 4)) {
+        const img = document.createElement("img");
+        img.src = app.iconURL || ""; img.alt = "";
+        $(".misc-icon").appendChild(img);
+      }
+      for (const app of apps) {
+        const v = (app.versions || [])[0];
+        const row = document.createElement("div");
+        row.className = "app";
+        row.innerHTML = `<img alt=""><div class="meta"><strong></strong><span class="v"></span><span class="d"></span></div><a class="get">Get</a>`;
+        row.querySelector("img").src = app.iconURL || "";
+        row.querySelector("strong").textContent = app.name;
+        const get = row.querySelector(".get");
+        if (v) {
+          row.querySelector(".v").textContent = `${v.version} (${v.buildVersion})`;
+          row.querySelector(".d").textContent = new Date(v.date).toLocaleDateString();
+          get.href = v.downloadURL;
+          get.textContent = "IPA" + (v.size ? ` · ${mb(v.size)}` : "");
+        } else {
+          row.querySelector(".v").textContent = "No builds yet";
+          get.remove();
+        }
+        $(".apps").appendChild(row);
+      }
+    }).catch(() => { $(".ver").textContent = "Couldn't load misc.json"; });
   }
 </script>
 </body>
