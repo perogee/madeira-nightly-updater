@@ -1,0 +1,51 @@
+{
+  "source": {
+    "name": "Misc. Sources",
+    "identifier": "io.github.misc-emulators.source",
+    "subtitle": "Emulators for iPhone",
+    "description": "Auto-updated source for MeloNX, Manic EMU, DolphiniOS and ARMSX2, built from each project's own releases.",
+    "tintColor": "#5B6CFF"
+  },
+  "apps": [
+    {
+      "name": "MeloNX",
+      "upstream": "forgejo:starforgejo.dev/projects/MeloNX",
+      "asset": "\\.ipa$",
+      "developerName": "MeloNX Team",
+      "subtitle": "Nintendo Switch emulator for iOS.",
+      "localizedDescription": "MeloNX is a Nintendo Switch emulator for iOS, based on Ryujinx. Requires JIT.",
+      "tintColor": "#E4002B",
+      "category": "games"
+    },
+    {
+      "name": "Manic EMU",
+      "upstream": "github:Manic-EMU/ManicEMU",
+      "asset": "SideloadJIT\\.ipa$|\\.ipa$",
+      "developerName": "Manic EMU",
+      "subtitle": "All-in-one retro console emulator.",
+      "localizedDescription": "Manic EMU is a multi-system emulator for iOS. This is the sideload build with JIT support.",
+      "tintColor": "#FF2D4B",
+      "category": "games"
+    },
+    {
+      "name": "DolphiniOS",
+      "upstream": "github:OatmealDome/dolphin-ios",
+      "asset": "^Non-Jailbroken\\.ipa$",
+      "developerName": "OatmealDome",
+      "subtitle": "GameCube and Wii emulator.",
+      "localizedDescription": "DolphiniOS is a port of the Dolphin GameCube/Wii emulator to iOS. This is the non-jailbroken beta build. Requires JIT.",
+      "tintColor": "#F2B705",
+      "category": "games"
+    },
+    {
+      "name": "ARMSX2 Nightly",
+      "upstream": "github:ARMSX2/ARMSX2",
+      "asset": "iOS-arm64\\.ipa$",
+      "developerName": "ARMSX2",
+      "subtitle": "PlayStation 2 emulator (nightly).",
+      "localizedDescription": "ARMSX2 is a PlayStation 2 emulator for ARM devices, based on PCSX2. These are the nightly iOS builds (unsigned). Requires JIT.",
+      "tintColor": "#1FA2FF",
+      "category": "games"
+    }
+  ]
+}
