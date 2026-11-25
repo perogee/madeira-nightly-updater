@@ -20,6 +20,16 @@
       "screenshots": [],
       "versions": [
         {
+          "version": "0.2.101",
+          "buildVersion": "179",
+          "marketingVersion": "Madeira Nightly 0.2.101",
+          "date": "2026-11-25T05:20:54Z",
+          "localizedDescription": "☕ **Support Madeira:** https://buymeacoffee.com/camhawk\n\n---\n\n**Madeira Nightly 0.2.101**\nEverything since 0.2.100. This is a test build and has not been tested on a device yet: please send a log with Get Help for anything that breaks.\n\n**Controls**\n• **Touch controls:** a stick zone can move the mouse, and can hold an extra action when pushed far\n• **Touch controls:** buttons can latch and press a second key\n• **Touch controls:** button opacity and colour\n• **Gyro aim:** more activation buttons and an on-screen Gyro button\n• **Touch mode:** a tap moves the pointer first, then clicks\n• **Controller:** claims controller input again if the first try at app start was too early\n\n**Game fixes**\n• **Left 4 Dead 2:** downloaded Workshop add-ons are copied where the game looks for them\n• **Madeira Dock:** games with no .exe launch option use the best non-beta Windows option\n• Fix for the Visual C++ installer failing in some Unreal games\n• **Baldur's Gate 3** launcher: room for the fourth Chromium memory pool\n\nThanks to BOR1NG (Avery Felts), MetalSharp-Wine (LGPL-2.1, FEX parts MIT) and Mesa/KosmicKrisp (MIT). Full source for this build is attached.\n\n---\n\n☕ **Support Madeira:** https://buymeacoffee.com/camhawk",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.101-og/Madeira.Nightly.0.2.101.og.ipa",
+          "size": 234182560,
+          "minOSVersion": "18.0"
+        },
+        {
           "version": "0.2.100",
           "buildVersion": "178",
           "marketingVersion": "Madeira Nightly 0.2.100",
