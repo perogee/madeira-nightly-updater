@@ -20,6 +20,16 @@
       "screenshots": [],
       "versions": [
         {
+          "version": "0.2.100",
+          "buildVersion": "178",
+          "marketingVersion": "Madeira Nightly 0.2.100",
+          "date": "2026-11-25T01:24:43Z",
+          "localizedDescription": "☕ **Support Madeira:** https://buymeacoffee.com/camhawk\n\n---\n\n**Madeira Nightly 0.2.100**\nEverything since 0.2.95. This is a test build: please send a log with Get Help for anything that breaks.\n\n**New**\n• **New look:** more screens use Apple's standard style (start screen, store pages, the \"Did it work?\" card, Get Help, first-time setup)\n• **Controllers on iPad:** no more second (blue) highlight on menus\n• **DX12 games:** newer KosmicKrisp (Mesa 26.3.1), and compiled shaders are saved, so later launches start faster\n• **Steam:** the Launch arguments field now works when \"The game\" is picked\n• **Touch camera:** with Pointer mode set to Relative, finger camera follows your sensitivity setting\n• **Mouse lock (iPad):** keeps asking again if iPadOS says no at first\n• **Tap to click:** better timing for taps and tap-and-hold\n• **Game Dock:** finds PhysX and other installers in every Steam library, including external drives\n\n**Game fixes**\n• **Raft** reaches the main menu\n• **Left 4 Dead 2** start fix\n• **Baldur's Gate 3** launcher: memory and .NET fixes (still closes after about 11 s; more logs added)\n• **Batman: Arkham** games reach the title screen with PhysX\n• **Black Ops 3, Overwatch 2:** more logging to find their crashes\n\n**Known issues**\n• Baldur's Gate 3 and Black Ops 3 still close early\n• A few games need a short hold instead of a quick tap to click\n\nThanks to BOR1NG (Avery Felts), MetalSharp-Wine (LGPL-2.1, FEX parts MIT) and Mesa/KosmicKrisp (MIT). Full source for this…",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
+          "size": 234045664,
+          "minOSVersion": "18.0"
+        },
+        {
           "version": "0.2.0",
           "buildVersion": "173",
           "marketingVersion": "Madeira Nightly 0.2.95 (original bundle ID)",
