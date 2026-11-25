@@ -1,0 +1,215 @@
+{
+  "name": "Misc. Sources",
+  "identifier": "io.github.misc-emulators.source",
+  "subtitle": "Emulators for iPhone",
+  "description": "Auto-updated source for MeloNX, Manic EMU, DolphiniOS and ARMSX2, built from each project's own releases.",
+  "tintColor": "#5B6CFF",
+  "iconURL": "https://perogee.github.io/madeira-nightly-updater/icons/com.aoshuang.manicemu.png",
+  "apps": [
+    {
+      "name": "Manic EMU",
+      "developerName": "Manic EMU",
+      "subtitle": "All-in-one retro console emulator.",
+      "localizedDescription": "Manic EMU is a multi-system emulator for iOS. This is the sideload build with JIT support.",
+      "tintColor": "#FF2D4B",
+      "category": "games",
+      "bundleIdentifier": "com.aoshuang.manicemu",
+      "iconURL": "https://perogee.github.io/madeira-nightly-updater/icons/com.aoshuang.manicemu.png",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "2.0.2",
+          "buildVersion": "5",
+          "marketingVersion": "v2.0.2",
+          "date": "2026-11-02T08:03:58Z",
+          "localizedDescription": "- Improved 3DS performance\r\n- Nimbus in Artic Base now supports the latest Pretendo\r\n- Improved Home Menu performance on the Azahar core\r\n- Fixed Wii pointer behavior for affected users\r\n- Added MeloCafe Link support\r\n- iPad now supports windowed apps\r\n- Redesigned the SNES skin\r\n- Added skin fallback: iPad can use iPhone skins\r\n- Support for iPhone Duo\r\n- Fixed AirPlay not working on iOS 27 or later\r\n- Added BitBop, a new sister app to Manic EMU for retro game music\r\n- Other bug fixes and improvements",
+          "downloadURL": "https://github.com/Manic-EMU/ManicEMU/releases/download/v2.0.2/ManicEMU.v2.0.2.SideloadJIT.ipa",
+          "size": 293317769,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "2.0.1",
+          "buildVersion": "12",
+          "marketingVersion": "v2.0.1",
+          "date": "2026-09-18T09:29:42Z",
+          "localizedDescription": "- Added WonderSwan support\r\n- Added NAOMI, Atomiswave, and System SP arcade support\r\n- Added Flash support\r\n  · Skin button binding\r\n  · Hardware keyboard input\r\n  · Software keyboard input\r\n  · Touch input\r\n- Built-in, self-contained JIT — no external debugger required\r\n- Added Slow Motion\r\n- Improved GameCube and Wii performance\r\n- GameCube now supports multi-disc games\r\n- Improved Wii motion controls\r\n- Simulate the Wii IR pointer by touch\r\n- Add games from other emulators via a link\r\n- Fixed some arcade systems that wouldn’t run\r\n- Fixed Dreamcast games running too fast\r\n- Fixed PSP crashes\r\n- Added NDS lid open/close\r\n- Improved rotation: with orientation lock on in Control Center, the app no longer snaps back to portrait\r\n- In-game shortcut tips can now be turned off\r\n- Landscape library can disable carousel style\r\n- Smoother landscape carousel scrolling\r\n- MultiDisc Helper supports more formats\r\n- Hardware keyboard input for Symbian, Amiga, and C64\r\n- Added RomM support\r\n  · LAN self-hosted servers only\r\n  · Sync only for games imported from RomM\r\n  · Manual sync only, from the service card’s long-press menu\r\n  · Pull ROMs, covers, metadata, manuals, and game saves\r\n- Fixed a launch timeout that could quit the app on older devices\r\n- N64 now supports ROMs larger than 64 MB",
+          "downloadURL": "https://github.com/Manic-EMU/ManicEMU/releases/download/v2.0.1/ManicEMU.v2.0.1.SideloadJIT.ipa",
+          "size": 288525117,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "2.0.0",
+          "buildVersion": "20",
+          "marketingVersion": "v2.0.0",
+          "date": "2026-09-03T10:06:18Z",
+          "localizedDescription": "> [!NOTE]\r\n> Starting from version 2.0.0, we no longer provide builds of TrollStore JIT. You can package it yourself by following the [guide](https://github.com/Rednick16/TrollStoreJITEnabler).\r\n\r\nThis is a major release focused on a redesigned interface, expanded platform support, and advanced features. Landscape browsing, library management, and external controller navigation have been rebuilt. It also adds several new systems and brings Netplay to eligible Libretro cores.\r\n\r\n\r\n### Before You Update\r\n\r\n- Dreamcast (Flycast): Existing save states will no longer work as of 2.0.0. Convert important save states to in-game saves before updating, or back up the `Flycast/dc` folder yourself.\r\n- Wii: A BootMii-format `keys.bin` is required.\r\n- Symbian: Install firmware in Settings first (`.ROM`; S60v2 and later also need `.RPKG`).\r\n- GameCube / Wii: The core is still being optimized, so heat and frame drops should still be expected.\r\n- MAME: A number of lesser-used arcade systems have been trimmed. Some obscure titles may no longer run.\r\n\r\n### Interface\r\n\r\nLandscape\r\n\r\n- A new landscape library, with most landscape pages redesigned.\r\n- Built-in dynamic backgrounds. You can use or upload ShaderToy (GLSL) scripts to customize them. Only single-Image scripts are supported; complex scripts may increase battery use or heat.\r\n- Multiple customizable card carousel styles.\r\n- Focused background: when a game is selected, its banner can be used as the landscape focus backdrop.\r\n- background…",
+          "downloadURL": "https://github.com/Manic-EMU/ManicEMU/releases/download/v2.0.0/ManicEMU.v2.0.0.SideloadJIT.ipa",
+          "size": 273393210,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "1.9.2",
+          "buildVersion": "0",
+          "marketingVersion": "v1.9.2",
+          "date": "2026-04-16T16:29:26Z",
+          "localizedDescription": "Urgent fix for J2ME (J2meJS) save file loading error\r\nFixed the issue where Artic Base couldn't select the Australia region\r\n3DS (Azahar) adds HLE and LLE emulation accuracy options.\r\nFixed NDS crash when using Flex Skin",
+          "downloadURL": "https://github.com/Manic-EMU/ManicEMU/releases/download/v1.9.2/ManicEMU.v1.9.2.SideloadJIT.ipa",
+          "size": 227390683,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "1.9.1",
+          "buildVersion": "7",
+          "marketingVersion": "v1.9.1",
+          "date": "2026-04-15T14:02:19Z",
+          "localizedDescription": "Heads up: v1.9.1 will corrupt save files in J2ME (J2meJS core), and we’re really sorry about that. As a temporary workaround, we suggest backing up the save file \"XXX.j2mejs.srm\" in the \"Manic EMU - Datas\" folder. We'll look into whether we can recover the save data.\r\n\r\n### JIT (iOS 26 & Earlier)\r\n\r\n- Implemented broad JIT support compatible with iOS 26 and earlier versions\r\n- Integrated support for StikDebug’s universal.js launcher (Special thanks to @Stossy11)\r\n- Added JIT support for:\r\n    - 3DS (Citra)\r\n    - Dreamcast (Flycast)\r\n    - Nintendo DS (melonDS)\r\n    - Nintendo 64 (GLideN64 RDP / mupen64plus.next  Special thanks to  @Fareblyat)\r\n    - DOS (dosbox-pure)\r\n    - PlayStation 1 (beetle-psx)\r\n    - Added setting to enable/re-enable JIT directly from the app\r\n    - Improved JIT handling flow for iOS 26 (automatic redirect to reinitialize when required)\r\n\r\n### Core & Emulator Updates\r\n\r\n- Updated 3DS (Azahar) to latest upstream\r\n- Updated PSP (PPSSPP) to latest upstream\r\n- Added SNES core (snes9x; sideloaded availability)\r\n- Added PS1 core (PCSX-ReARMed)\r\n\r\n### 3DS Improvements\r\n\r\n- Fixed Vulkan-related crashes (Azahar)\r\n- Fixed Home Menu compilation and freezing issues\r\n- Added Artic Base Home Menu support\r\n- Added support for transferring data from real hardware via Artic Base\r\n- Added Pretendo network configuration support\r\n- Improved Home Menu integration (direct install logic)\r\n- Added fast-forward support (Citra)\r\n- Added full-screen AirPlay mirroring (Citra)…",
+          "downloadURL": "https://github.com/Manic-EMU/ManicEMU/releases/download/v1.9.1/ManicEMU.v1.9.1.SideloadJIT.ipa",
+          "size": 227362235,
+          "minOSVersion": "15.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "_upstream": "github:Manic-EMU/ManicEMU"
+    },
+    {
+      "name": "DolphiniOS",
+      "developerName": "OatmealDome",
+      "subtitle": "GameCube and Wii emulator.",
+      "localizedDescription": "DolphiniOS is a port of the Dolphin GameCube/Wii emulator to iOS. This is the non-jailbroken beta build. Requires JIT.",
+      "tintColor": "#F2B705",
+      "category": "games",
+      "bundleIdentifier": "me.oatmealdome.DolphiniOS-njb-patreon-beta",
+      "iconURL": "https://perogee.github.io/madeira-nightly-updater/icons/me.oatmealdome.DolphiniOS-njb-patreon-beta.png",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "5.0.0b6",
+          "buildVersion": "26",
+          "marketingVersion": "5.0.0b6",
+          "date": "2026-06-20T07:01:54Z",
+          "localizedDescription": "* Fixed JIT support on A13/A14/M1 devices running iOS 27 beta. (@CelloSerenity)\r\n* Fixed wrong app version number introduced in 5.0.0b5. (@CelloSerenity)\r\n\r\nThe next update will be sometime after the next official Dolphin release. It will include a core update.\r\n\r\n**Full Changelog**: https://github.com/OatmealDome/dolphin-ios/compare/v5.0.0b5...v5.0.0b6",
+          "downloadURL": "https://github.com/OatmealDome/dolphin-ios/releases/download/v5.0.0b6/Non-Jailbroken.ipa",
+          "size": 17963367,
+          "minOSVersion": "14.0"
+        },
+        {
+          "version": "5.0.0b4",
+          "buildVersion": "25",
+          "marketingVersion": "5.0.0b5",
+          "date": "2026-06-16T21:42:57Z",
+          "localizedDescription": "* Fixed TXM check for non-jailbroken devices running iOS 26.6 or newer. (thanks @StephenDev0)\r\n  * iOS 27 is still broken and requires additional work.\r\n\r\nThe next update will be sometime after the next official Dolphin release. It will include a core update.\r\n\r\n**Full Changelog**: https://github.com/OatmealDome/dolphin-ios/compare/v5.0.0b4...v5.0.0b5",
+          "downloadURL": "https://github.com/OatmealDome/dolphin-ios/releases/download/v5.0.0b5/Non-Jailbroken.ipa",
+          "size": 17963147,
+          "minOSVersion": "14.0"
+        },
+        {
+          "version": "5.0.0b4",
+          "buildVersion": "24",
+          "marketingVersion": "5.0.0b4",
+          "date": "2025-10-23T02:48:05Z",
+          "localizedDescription": "**[StikDebug](https://apps.apple.com/us/app/stikdebug/id6744045754) version 2.3.0 or newer is required on iOS 26 devices.** LiveContainer will also require some additional setup.\r\n\r\n* Fixed a crash when using JIT on devices running iOS 26 with an A12, A13, A14, or M1 chip.\r\n* Added additional JIT information to the Debug menu to assist in debugging problems.\r\n\r\n**Full Changelog**: https://github.com/OatmealDome/dolphin-ios/compare/v5.0.0b3...v5.0.0b4",
+          "downloadURL": "https://github.com/OatmealDome/dolphin-ios/releases/download/v5.0.0b4/Non-Jailbroken.ipa",
+          "size": 17963622,
+          "minOSVersion": "14.0"
+        },
+        {
+          "version": "5.0.0b3",
+          "buildVersion": "23",
+          "marketingVersion": "5.0.0b3",
+          "date": "2025-10-18T17:01:54Z",
+          "localizedDescription": "**[StikDebug](https://apps.apple.com/us/app/stikdebug/id6744045754) version 2.3.0 or newer is required on iOS 26 devices.** LiveContainer will also require some additional setup.\r\n\r\n* Added support for the Skylanders Portal of Power in Skylanders games for the Wii, courtesy of @deReeperJosh.\r\n  * Enable \"Emulate Skylander Portal\" in Settings -> Config -> Wii and select \"Skylanders Portal\" in the in-game menu to load a figure.\r\n* Fixed an issue where devices with an A15+ or M2+ chip running iOS 17 or 18 would crash when starting a game in JIT mode.\r\n* Fixed an issue where \"vm_map\" errors would randomly occur.\r\n\r\n**Full Changelog**: https://github.com/OatmealDome/dolphin-ios/compare/v5.0.0b2...v5.0.0b3",
+          "downloadURL": "https://github.com/OatmealDome/dolphin-ios/releases/download/v5.0.0b3/Non-Jailbroken.ipa",
+          "size": 17963458,
+          "minOSVersion": "14.0"
+        },
+        {
+          "version": "5.0.0b2",
+          "buildVersion": "22",
+          "marketingVersion": "5.0.0b2",
+          "date": "2025-10-13T02:16:56Z",
+          "localizedDescription": "**[StikDebug](https://apps.apple.com/us/app/stikdebug/id6744045754) version 2.3.0 or newer is required on iOS 26 devices.** LiveContainer will also require some additional setup.\r\n\r\n* Fixed an issue where some controller options would be incorrectly disabled.\r\n* Fixed an issue where there was a typo in text pertaining to \"memory size\" overrides.\r\n* Added additional alerts to help debug a crash on some devices running iOS 18 and older.\r\n\r\n**Full Changelog**: https://github.com/OatmealDome/dolphin-ios/compare/v5.0.0b1...v5.0.0b2",
+          "downloadURL": "https://github.com/OatmealDome/dolphin-ios/releases/download/v5.0.0b2/Non-Jailbroken.ipa",
+          "size": 17958160,
+          "minOSVersion": "14.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "_upstream": "github:OatmealDome/dolphin-ios"
+    },
+    {
+      "name": "ARMSX2 Nightly",
+      "developerName": "ARMSX2",
+      "subtitle": "PlayStation 2 emulator (nightly).",
+      "localizedDescription": "ARMSX2 is a PlayStation 2 emulator for ARM devices, based on PCSX2. These are the nightly iOS builds (unsigned). Requires JIT.",
+      "tintColor": "#1FA2FF",
+      "category": "games",
+      "bundleIdentifier": "com.armsx2.ios.nightly",
+      "iconURL": "https://perogee.github.io/madeira-nightly-updater/icons/com.armsx2.ios.nightly.png",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "2.6.0-nightly.20261124.1937",
+          "buildVersion": "260",
+          "marketingVersion": "ARMSX2 nightly 20261124 (61a4b2b2f6)",
+          "date": "2026-11-25T00:49:03Z",
+          "localizedDescription": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64.AppImage, for 4K, 16K and 64K page kernels alike\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- iOS: skip the indentation commit in git blame\n- Translations: the MaliSX2 driver notice in all 19 languages\n- Android: regenerate the PGO profile on the source with the VU1 chunk store and the EE two-issue timing model\n- microVU: the program memory bound is 192 MiB\n- VU1 chunk store: a lookup that installs a body writes no log line\n- VU AOT: a routine keeps up to 32 tiered b…",
+          "downloadURL": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261124/ARMSX2-nightly-20261124-61a4b2b2f6-iOS-arm64.ipa",
+          "size": 41101991,
+          "minOSVersion": "17.4"
+        },
+        {
+          "version": "2.6.0-nightly.20261123.2028",
+          "buildVersion": "260",
+          "marketingVersion": "ARMSX2 nightly 20261123 (d8d9a02783)",
+          "date": "2026-11-23T20:48:17Z",
+          "localizedDescription": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64.AppImage, for 4K, 16K and 64K page kernels alike\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- EE: charge taking an exception 9 cycles, as the console takes\n- EE: charge ERET 6 cycles, as the console takes\n- EE rec: do not charge a cycle the interpreter does not after ERET, SYSCALL and EI\n- EE: charge SYNC.P 5 cycles, as the console takes\n- microVU: keep the program cache in a few large blocks, bounded by the RAM cap\n- iOS: put EmulatorBridge on the main actor\n- iOS:…",
+          "downloadURL": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261123/ARMSX2-nightly-20261123-d8d9a02783-iOS-arm64.ipa",
+          "size": 40949886,
+          "minOSVersion": "17.4"
+        },
+        {
+          "version": "2.6.0-nightly.20261122.2300",
+          "buildVersion": "260",
+          "marketingVersion": "ARMSX2 nightly 20261122 (6370337611)",
+          "date": "2026-11-22T06:28:24Z",
+          "localizedDescription": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64.AppImage, for 4K, 16K and 64K page kernels alike\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- Android: describe what applyPadButton does with p_range\n- Android: drop unchanged USB pad reports on the reader thread\n- Android: rumble for a DualShock 3 under the USB takeover\n- Android: keep a DualShock 3 button pressed while its pressure reads 0\n- Android: native DualShock 3 button pressure over USB\n- Linux arm64: pad shared structures to 128 bytes, warn only on a smalle…",
+          "downloadURL": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-iOS-arm64.ipa",
+          "size": 40930252,
+          "minOSVersion": "17.4"
+        },
+        {
+          "version": "2.6.0-nightly.20261121.1609",
+          "buildVersion": "260",
+          "marketingVersion": "ARMSX2 nightly 20261121 (8bee9fff99)",
+          "date": "2026-11-21T16:45:32Z",
+          "localizedDescription": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- iOS: split the menu controller input router\n- iOS: split the controller accessibility navigation file\n- iOS: split the orb field file and move the theme tables to Appearance\n- iOS: localize the Report a Problem screens in nine languages\n- iOS: offer a report aft…",
+          "downloadURL": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261121/ARMSX2-nightly-20261121-8bee9fff99-iOS-arm64.ipa",
+          "size": 40743520,
+          "minOSVersion": "17.4"
+        },
+        {
+          "version": "2.6.0-nightly.20261120.0157",
+          "buildVersion": "260",
+          "marketingVersion": "ARMSX2 nightly 20261120 (1d1c26d8a2)",
+          "date": "2026-11-20T02:24:38Z",
+          "localizedDescription": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- Catalog: a cache entry stamped one second ahead of time() is fresh\n- SDL frontend: pausing a game launched from the command line no longer quits\n- GS/Vulkan: the pipeline builder checks each vertex array against its own limit\n- tests: a Vulkan pipeline with eigh…",
+          "downloadURL": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261120/ARMSX2-nightly-20261120-1d1c26d8a2-iOS-arm64.ipa",
+          "size": 40427581,
+          "minOSVersion": "17.4"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "_upstream": "github:ARMSX2/ARMSX2"
+    }
+  ],
+  "news": []
+}
