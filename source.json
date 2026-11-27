@@ -20,6 +20,16 @@
       "screenshots": [],
       "versions": [
         {
+          "version": "0.2.180",
+          "buildVersion": "180",
+          "marketingVersion": "Madeira Nightly 0.2.180",
+          "date": "2026-11-27T00:55:21Z",
+          "localizedDescription": "☕ **Support Madeira:** https://buymeacoffee.com/camhawk\n\n---\n\n**Madeira Nightly 0.2.180**\nEverything since 0.2.101 (the version number now matches the build number). This is a test build and has not been tested on a device yet: please send a log with Get Help for anything that breaks.\n\n**App**\n• **Storage screen:** see what uses space, remove several games at once, and choose whether their files go too\n• **Store pages:** Install and Update work from the sheet, and it no longer reopens after you close it\n• **Remove from Library:** the confirmation now appears on the page you are on\n• **Steam:** pick the download server in Settings\n• **About:** shows the version and whether a newer build exists\n• Clearer default resolution label; overlays follow the screen's orientation\n\n**Controls**\n• Attempted fix for controllers that did nothing in Madeira but worked in other apps\n• Option to swap A/B and X/Y on any controller\n• The mouse stick can be turned off from the config\n\n**Game fixes (not yet tested on a device)**\n• **Baldur's Gate 3:** Madeira Dock starts the game without Larian's launcher\n• **Grounded:** recommended settings start the game program directly\n• **Stray and other Unreal games:** fix for the \"Microsoft Visual C++ Runtime\" box\n• **Resident Evil Requiem:** new memory settings (turn off with `pool-low = 0`)\n• **Subnautica 2:** settings against an early crash\n• **Fallout 4:** fix for a crash shortly after Play\n• **RimWorld:** attempt at the blank menu text\n• **Garry's Mod:*…",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.180-og/Madeira.Nightly.180.og.ipa",
+          "size": 234996705,
+          "minOSVersion": "18.0"
+        },
+        {
           "version": "0.2.101",
           "buildVersion": "179",
           "marketingVersion": "Madeira Nightly 0.2.101",
